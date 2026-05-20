@@ -35,7 +35,7 @@ export default function ProjectsList() {
             className={`rounded-full border px-4 py-2 text-sm transition ${filter === null ? 'border-[#6EE7B7]/20 bg-[#6EE7B7]/10 text-white shadow-[0_15px_45px_rgba(110,231,183,0.1)]' : 'border-white/10 bg-white/5 text-slate-200 hover:border-[#6EE7B7]/20 hover:bg-[#ffffff]/10'}`}
             onClick={() => setFilter(null)}
           >
-            all
+            All
           </button>
           {tags.map((t) => (
             <button
@@ -43,7 +43,7 @@ export default function ProjectsList() {
               className={`rounded-full border px-4 py-2 text-sm transition ${filter === t ? 'border-[#6EE7B7]/20 bg-[#6EE7B7]/10 text-white shadow-[0_15px_45px_rgba(110,231,183,0.1)]' : 'border-white/10 bg-white/5 text-slate-200 hover:border-[#6EE7B7]/20 hover:bg-[#ffffff]/10'}`}
               onClick={() => setFilter(t)}
             >
-              {t}
+              {t.charAt(0).toUpperCase() + t.slice(1)}
             </button>
           ))}
         </div>
