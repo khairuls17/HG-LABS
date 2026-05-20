@@ -22,7 +22,10 @@ const addCommand = (name: string, description: string, execute: (args: string) =
 }
 
 addCommand('help', 'Show available commands', () => {
-  return Object.entries(commandRegistry).map(([name, command]) => `${name} — ${command.description}`)
+  const commands = Object.entries(commandRegistry).map(
+    ([name, command]) => `• ${name} — ${command.description}`
+  )
+  return ['Available commands:', '', ...commands]
 })
 
 addCommand('about', 'Learn about HG Labs', () =>
@@ -138,26 +141,39 @@ export function useTerminalCommands() {
 
     const commandDefinition = commandRegistry[command]
     const output = commandDefinition ? commandDefinition.execute(argString) : `Unknown command: ${value}. Type help for available commands.`
-    const response = Array.isArray(output) ? output.join('\n') : output
     const timestamp = Date.now()
-    const responseId = `${command}-${timestamp}-response`
 
+    const promptEntry = {
+      id: `${command}-${timestamp}-prompt`,
+      prompt: value,
+      text: '',
+      variant: 'command' as const,
+    }
+
+    if (Array.isArray(output)) {
+      const responseEntries = output.map((line, index) => ({
+        id: `${command}-${timestamp}-response-${index}`,
+        text: line,
+        variant: 'response' as const,
+      }))
+
+      pushHistory([promptEntry, ...responseEntries])
+      setHistoryIndex(null)
+      return
+    }
+
+    const responseId = `${command}-${timestamp}-response`
     pushHistory([
-      {
-        id: `${command}-${timestamp}-prompt`,
-        prompt: value,
-        text: '',
-        variant: 'command',
-      },
+      promptEntry,
       {
         id: responseId,
         text: '',
-        fullText: response,
-        variant: 'response',
+        fullText: output,
+        variant: 'response' as const,
       },
     ])
 
-    setTypingEntry({ id: responseId, fullText: response })
+    setTypingEntry({ id: responseId, fullText: output })
     setHistoryIndex(null)
   }
 

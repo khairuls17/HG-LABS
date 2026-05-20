@@ -17,7 +17,7 @@ export default function Terminal() {
 
   return (
     <section
-      className="mx-auto w-full max-w-3xl rounded-[32px] border border-white/10 bg-white/5 p-6 shadow-[0_40px_120px_rgba(0,0,0,0.22)] backdrop-blur-2xl ring-1 ring-white/5 sm:p-8"
+      className="mx-auto w-full max-w-2xl rounded-[32px] border border-white/10 bg-white/5 p-6 shadow-[0_40px_120px_rgba(0,0,0,0.22)] backdrop-blur-2xl ring-1 ring-white/5 sm:p-8"
       onClick={() => inputRef.current?.focus()}
       role="region"
       aria-label="Interactive terminal"
