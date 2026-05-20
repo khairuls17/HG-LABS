@@ -87,8 +87,8 @@ export default function Hero() {
           </h1>
 
           <p className="mt-6 max-w-2xl text-3xl leading-tight text-slate-200 sm:text-4xl">
-            midnight coding &<br />
-            weird internet experiments
+            Midnight coding &<br />
+            Weird internet experiments
           </p>
 
           <p className="mt-8 max-w-2xl text-base leading-7 text-slate-400 sm:text-lg">
@@ -97,10 +97,10 @@ export default function Hero() {
 
           <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }} className="mt-10 flex flex-wrap items-center gap-4">
             <Link href="/terminal" className="glass-button inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-medium text-white transition duration-300 hover:border-white/30 hover:bg-white/10">
-              enter lab
+              Enter lab
             </Link>
-            <Link href="/terminal" className="text-sm text-slate-400 transition hover:text-slate-100">
-              explore terminal →
+            <Link href="/projects" className="text-sm text-slate-400 transition hover:text-slate-100">
+              Explore Projects →
             </Link>
           </motion.div>
         </motion.div>
